@@ -1,9 +1,39 @@
 import { Router } from "express";
-import { randomBytes } from "crypto";
+import { randomBytes, createHmac } from "crypto";
 import { getDb } from "../../bot/db/database.js";
 import { getAnySock } from "../../bot/connection.js";
 import { logger } from "../../lib/logger.js";
 import { getUserByLid, linkUserLid } from "../../bot/db/queries.js";
+
+// ── Stateless signed session tokens ──────────────────────────────────────────
+// Format: base64(userId + ":" + expiresAt + ":" + nonce) + "." + hmac
+// Survives server restarts — nothing stored in DB. Set JWT_SECRET in Render env.
+const SESSION_SECRET = process.env.JWT_SECRET || process.env.SESSION_SECRET || "requiem-default-secret-change-me";
+const SESSION_DAYS   = 30;
+
+export function createSessionToken(userId: string): string {
+  const expiresAt = Math.floor(Date.now() / 1000) + SESSION_DAYS * 24 * 3600;
+  const nonce     = randomBytes(8).toString("hex");
+  const payload   = Buffer.from(`${userId}:${expiresAt}:${nonce}`).toString("base64url");
+  const sig       = createHmac("sha256", SESSION_SECRET).update(payload).digest("base64url");
+  return `${payload}.${sig}`;
+}
+
+export function verifySessionToken(token: string): { userId: string; expiresAt: number } | null {
+  try {
+    const [payload, sig] = token.split(".");
+    if (!payload || !sig) return null;
+    const expected = createHmac("sha256", SESSION_SECRET).update(payload).digest("base64url");
+    if (expected !== sig) return null;
+    const [userId, expiresAtStr] = Buffer.from(payload, "base64url").toString().split(":");
+    const expiresAt = Number(expiresAtStr);
+    if (!userId || !expiresAt || Math.floor(Date.now() / 1000) > expiresAt) return null;
+    return { userId, expiresAt };
+  } catch {
+    return null;
+  }
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 const router = Router();
 
@@ -310,12 +340,9 @@ router.post("/otp/verify", (req, res) => {
     db.prepare("UPDATE users SET phone = ? WHERE id = ?").run(normalized, user.id);
   }
 
-  // Store the canonical phone as session user_id so middleware always resolves correctly.
-  // We use the incoming normalized phone, not user.phone, to guard against null/empty phone columns.
+  // Create a stateless signed token — no DB row needed, survives server restarts.
   const canonicalId = normalized;
-  const token = randomBytes(32).toString("hex");
-  const sessionExpiry = now + 30 * 24 * 3600;
-  db.prepare("INSERT INTO web_sessions (token, user_id, expires_at) VALUES (?, ?, ?)").run(token, canonicalId, sessionExpiry);
+  const token = createSessionToken(canonicalId);
 
   // ── Owner check ──────────────────────────────────────────────────────────
   // BOT_OWNER_PHONE is the plain phone number (e.g. 2348XXXXXXXXX).
