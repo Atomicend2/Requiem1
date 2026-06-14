@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&family=Shippori+Mincho:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-primary-border: var(--sidebar-primary-border);
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-accent-border: var(--sidebar-accent-border);
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+
+  --opaque-button-border-intensity: 9;
+
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+
+  /* Requiem Order ⚜ Imperial Throne Theme — Black, Crimson, Gold */
+  --background: 240 18% 5%;
+  --foreground: 0 0% 92%;
+
+  --border: 45 28% 15%;
+
+  --card: 240 14% 8%;
+  --card-foreground: 0 0% 92%;
+  --card-border: 45 50% 28%;
+
+  --sidebar: 240 18% 5%;
+  --sidebar-foreground: 0 0% 92%;
+  --sidebar-border: 45 30% 16%;
+  --sidebar-primary: 350 75% 38%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 12% 12%;
+  --sidebar-accent-foreground: 0 0% 92%;
+  --sidebar-ring: 350 75% 42%;
+
+  --popover: 240 16% 7%;
+  --popover-foreground: 0 0% 92%;
+  --popover-border: 45 35% 22%;
+
+  --primary: 350 75% 38%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 46 65% 52%;
+  --secondary-foreground: 240 14% 8%;
+
+  --muted: 240 12% 12%;
+  --muted-foreground: 240 8% 65%;
+
+  --accent: 46 60% 48%;
+  --accent-foreground: 240 14% 8%;
+
+  --destructive: 350 75% 45%;
+  --destructive-foreground: 0 0% 100%;
+
+  --input: 240 12% 12%;
+  --ring: 350 75% 45%;
+
+  --chart-1: 350 75% 38%;
+  --chart-2: 46 65% 52%;
+  --chart-3: 46 50% 35%;
+  --chart-4: 350 60% 55%;
+  --chart-5: 240 8% 65%;
+
+  --app-font-sans: 'Inter', sans-serif;
+  --app-font-serif: 'Cinzel', 'Playfair Display', serif;
+  --app-font-mono: 'Space Mono', monospace;
+
+  --radius: 0.4rem;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
+
+.dark {
+  /* Same as root — dark mode only */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-color: #0A0A0F;
+    background-image:
+      radial-gradient(at 50% 0%, rgba(160, 0, 26, 0.10) 0px, transparent 55%),
+      radial-gradient(at 85% 95%, rgba(212, 175, 55, 0.06) 0px, transparent 55%),
+      radial-gradient(at 15% 80%, rgba(139, 0, 0, 0.06) 0px, transparent 60%),
+      url('/images/imperial-pattern.svg');
+    background-size: auto, auto, auto, cover;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-attachment: fixed, fixed, fixed, fixed;
+    color: #EAEAEA;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-wide;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(21, 21, 29, 0.55);
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(160, 0, 26, 0.45);
+    background: rgba(21, 21, 29, 0.75);
+  }
+
+  .glass-panel {
+    background: rgba(10, 10, 15, 0.82);
+    border: 1px solid rgba(212, 175, 55, 0.14);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Imperial gold glow — rank, seals, treasury */
+  .neon-text-gold {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 0 22px rgba(212, 175, 55, 0.35);
+  }
+
+  .neon-text-purple {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 0 22px rgba(212, 175, 55, 0.35);
+  }
+
+  .neon-text-cyan {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 0 22px rgba(212, 175, 55, 0.35);
+  }
+
+  /* Royal Crimson glow — the colour of power */
+  .neon-text-sky {
+    text-shadow: 0 0 10px rgba(160, 0, 26, 0.6), 0 0 22px rgba(160, 0, 26, 0.35);
+  }
+
+  .neon-border-purple {
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.35), inset 0 0 10px rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.5);
+  }
+
+  .neon-border-sky {
+    box-shadow: 0 0 12px rgba(160, 0, 26, 0.4), inset 0 0 10px rgba(160, 0, 26, 0.12);
+    border-color: rgba(160, 0, 26, 0.5);
+  }
+
+  .neon-border-cyan {
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.35), inset 0 0 10px rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.5);
+  }
+}
