@@ -6,9 +6,10 @@ services:
     plan: free
     buildCommand: >-
       pnpm install &&
+      PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/.playwright node_modules/.bin/playwright install chromium --with-deps &&
       pnpm --filter @workspace/shadow-garden run build &&
       node artifacts/api-server/build.mjs
-    startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
+    startCommand: PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/.playwright node --enable-source-maps artifacts/api-server/dist/index.mjs
     healthCheckPath: /api/healthz
     envVars:
       - key: NODE_ENV
