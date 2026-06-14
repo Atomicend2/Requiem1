@@ -3,6 +3,7 @@ import { logger } from "./lib/logger";
 import { connectToWhatsApp, gracefulShutdown } from "./bot/connection.js";
 import { getDb } from "./bot/db/database.js";
 import { seedDefaultFrames } from "./bot/frames.js";
+import { loadCardsFromRepo } from "./bot/cards-loader.js";
 
 const rawPort = process.env["PORT"] || "8080";
 const port = Number(rawPort);
@@ -16,6 +17,13 @@ logger.info("Database initialized");
 
 seedDefaultFrames().catch((err) => {
   logger.error({ err }, "Failed to seed default frames");
+});
+
+// Load cards from cards.json (written by GitHub Actions scraper)
+loadCardsFromRepo().then((stats) => {
+  logger.info(stats, "cards.json → SQLite sync done");
+}).catch((err) => {
+  logger.warn({ err }, "cards.json loader failed (non-fatal)");
 });
 
 let shuttingDown = false;
