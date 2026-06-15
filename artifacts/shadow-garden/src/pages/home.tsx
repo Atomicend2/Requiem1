@@ -1,159 +1,130 @@
 import { useGetCommunityStats } from "@workspace/api-client-react/src/generated/api";
 import { Button } from "@/components/ui/button";
-import { Users, Crosshair, CreditCard, Shield, Activity } from "lucide-react";
+import { Users, CreditCard, Shield, Activity, ArrowRight, Zap, Sword, Coins } from "lucide-react";
 
 export default function Home() {
   const { data: stats, isLoading } = useGetCommunityStats();
 
   return (
     <div className="min-h-[100dvh]">
-      {/* Hero Section — full CSS animated sky, no image dependency */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Sky background layers */}
-        <div className="absolute inset-0 z-0">
-          {/* Imperial black base */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0F] via-[#0d0d12] to-background" />
-          {/* Crimson halo behind the throne */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-[60%] bg-[radial-gradient(ellipse_at_center,rgba(160,0,26,0.16),transparent_65%)]" />
-          {/* Gold glow accents */}
-          <div className="absolute top-[8%] left-[12%] w-[460px] h-[460px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.08),transparent_70%)] blur-3xl" />
-          <div className="absolute top-[5%] right-[10%] w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.06),transparent_70%)] blur-3xl" />
-          {/* Subtle horizon glow */}
-          <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-background via-background/80 to-transparent" />
-          {/* Throne room illustration */}
-          <img
-            src="/images/throne-hero.svg"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-50"
-          />
-          {/* Stars */}
-          <svg className="absolute inset-0 w-full h-full opacity-50" xmlns="http://www.w3.org/2000/svg">
-            {Array.from({ length: 60 }, (_, i) => (
-              <circle
-                key={i}
-                cx={`${(i * 137.508) % 100}%`}
-                cy={`${(i * 79.3) % 55}%`}
-                r={i % 7 === 0 ? "1.5" : "0.7"}
-                fill="#D4AF37"
-                opacity={0.10 + (i % 4) * 0.08}
-              />
-            ))}
-          </svg>
-        </div>
+
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+
+        {/* Grid overlay — the signature element */}
+        <div className="absolute inset-0 grid-overlay opacity-60" />
+        <div className="absolute inset-0 scanline" />
+
+        {/* Ambient glows */}
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-cyan-400/[0.04] blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[400px] h-[400px] rounded-full bg-violet-600/[0.05] blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent pointer-events-none" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          {/* Pill badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-primary/25 text-primary text-xs font-bold uppercase tracking-[0.35em] mb-8">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(160,0,26,0.9)]" />
-            <span className="font-mono">反逆 · The Black Rebellion</span>
+
+          {/* Status chip */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/[0.05] text-cyan-400 text-[11px] font-mono tracking-[0.2em] uppercase mb-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(0,255,255,1)]" />
+            System Online — Join the Order
           </div>
 
-          {/* Main title */}
-          <div className="mb-6">
-            <p className="text-rose-200/40 text-sm md:text-base tracking-[0.6em] uppercase font-sans font-light mb-3">Welcome To</p>
-            <h1 className="font-serif text-6xl md:text-8xl font-bold leading-none tracking-wider">
-              <span className="block bg-gradient-to-b from-white via-rose-100 to-rose-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(160,0,26,0.5)]">
-                反逆
+          {/* Main headline */}
+          <h1 className="mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <span className="block text-[11px] font-mono text-white/20 tracking-[0.5em] uppercase mb-4">
+              Requiem Order
+            </span>
+            <span className="block text-5xl sm:text-7xl md:text-8xl font-bold leading-[0.9] tracking-tight text-white">
+              Collect.<br />
+              <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #00FFFF 0%, #7C3AED 100%)" }}>
+                Conquer.
               </span>
-              <span className="block text-4xl md:text-5xl mt-2 bg-gradient-to-r from-rose-300 via-primary to-amber-300 bg-clip-text text-transparent neon-text-sky tracking-[0.3em]">
-                REQUIEM ORDER
-              </span>
-            </h1>
-          </div>
+            </span>
+          </h1>
 
-          <p className="text-base md:text-lg text-rose-100/60 mb-10 max-w-xl mx-auto leading-relaxed font-light">
-            Rise against the empire. Collect legendary cards, form guilds, build your economy, and answer the call of Zero.
+          <p className="text-base md:text-lg text-white/35 mb-12 max-w-lg mx-auto leading-relaxed font-light">
+            A WhatsApp-native card game with guilds, economy, and ranked combat. 35,000+ cards. One community.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://chat.whatsapp.com/IZi7UphEO9O76lY8dFYUYn?mode=gi_t"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-bold tracking-[0.2em] uppercase px-10 h-14 rounded-sm neon-border-sky relative overflow-hidden group"
-              >
-                <span className="relative z-10">Join Requiem Order</span>
-                <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="https://chat.whatsapp.com/IZi7UphEO9O76lY8dFYUYn?mode=gi_t" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto h-12 px-8 bg-cyan-400 hover:bg-cyan-300 text-[#06060e] font-bold tracking-wide text-sm rounded-md transition-all duration-200 hover:shadow-[0_0_24px_rgba(0,255,255,0.4)] flex items-center gap-2">
+                Join on WhatsApp
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </a>
             <a href="#stats" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto border-primary/30 text-rose-200 hover:bg-primary/10 hover:text-white font-bold tracking-[0.2em] uppercase px-10 h-14 rounded-sm glass-card"
-              >
-                View Community
+              <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 px-8 border-white/10 text-white/60 hover:text-white hover:border-white/20 hover:bg-white/[0.04] font-medium text-sm rounded-md transition-all duration-200">
+                View Stats
               </Button>
             </a>
           </div>
         </div>
 
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-30">
+          <div className="w-px h-10 bg-gradient-to-b from-transparent via-cyan-400 to-transparent" />
+        </div>
       </section>
 
-      {/* Stats Section */}
-      <section id="stats" className="py-24 px-4 bg-background relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-primary/40 font-mono tracking-[0.4em] text-xs uppercase mb-2">Live Data</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4 neon-text-sky">Community Pulse</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">The rebellion is ever-growing. Witness the scale of our uprising.</p>
+      {/* ── Stats ──────────────────────────────────────────── */}
+      <section id="stats" className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-[10px] font-mono text-cyan-400/40 tracking-[0.4em] uppercase mb-2">Live</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Community Stats</h2>
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[1,2,3,4].map((i) => <div key={i} className="h-36 glass-card rounded-xl animate-pulse bg-white/5" />)}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[1,2,3,4].map(i => <div key={i} className="h-28 glass-card rounded-xl animate-pulse" />)}
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <StatCard icon={Users}     label="Rebels"      value={stats?.totalMembers ?? 0}      color="text-primary" />
-              <StatCard icon={CreditCard}label="Cards Collected"  value={stats?.totalCards ?? 0}        color="text-rose-400" />
-              <StatCard icon={Shield}    label="Guilds Active"    value={stats?.totalGuilds ?? 0}       color="text-amber-400" />
-              <StatCard icon={Activity}  label="Bots Online"      value={(stats as any)?.totalBots ?? 0} color="text-teal-400" />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <StatCard icon={Users}      label="Members"       value={stats?.totalMembers ?? 0}        color="cyan" />
+              <StatCard icon={CreditCard} label="Cards"         value={stats?.totalCards ?? 0}          color="violet" />
+              <StatCard icon={Shield}     label="Guilds"        value={stats?.totalGuilds ?? 0}         color="cyan" />
+              <StatCard icon={Activity}   label="Bots Online"   value={(stats as any)?.totalBots ?? 0}  color="violet" />
             </div>
           )}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-24 px-4 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-primary/40 font-mono tracking-[0.4em] text-xs uppercase mb-2">What Awaits</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold neon-text-sky">The Requiem Order Experience</h2>
+      {/* ── Features ───────────────────────────────────────── */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-[10px] font-mono text-cyan-400/40 tracking-[0.4em] uppercase mb-2">Features</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>What You Get</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {FEATURES.map((f) => (
-              <div key={f.title} className="glass-card rounded-xl p-6 border-primary/8 hover:border-primary/25 transition-all duration-300 group hover:-translate-y-1">
-                <div className="w-12 h-12 rounded-xl bg-primary/8 border border-primary/15 flex items-center justify-center mb-4 group-hover:shadow-[0_0_20px_rgba(160,0,26,0.3)] transition-shadow">
-                  <f.icon className="w-5 h-5 text-primary" />
+              <div key={f.title} className="glass-card rounded-xl p-5 group cursor-default">
+                <div className="w-9 h-9 rounded-lg bg-cyan-400/[0.07] border border-cyan-400/15 flex items-center justify-center mb-4 group-hover:border-cyan-400/30 transition-colors">
+                  <f.icon className="w-4 h-4 text-cyan-400" />
                 </div>
-                <h3 className="font-serif text-base font-bold text-white mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                <h3 className="text-sm font-semibold text-white mb-1.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{f.title}</h3>
+                <p className="text-xs text-white/35 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ── CTA ────────────────────────────────────────────── */}
       <section className="py-24 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,rgba(160,0,26,0.07),transparent)]" />
-        <div className="relative z-10 max-w-2xl mx-auto">
-          <p className="font-mono text-primary/40 tracking-[0.5em] text-xs uppercase mb-4">反逆</p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white neon-text-sky mb-6">The World Is Watching</h2>
-          <p className="text-muted-foreground mb-8">Join Requiem Order on WhatsApp and join the rebellion today.</p>
+        <div className="absolute inset-0 grid-overlay opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/[0.02] to-transparent pointer-events-none" />
+        <div className="relative z-10 max-w-xl mx-auto">
+          <p className="text-[10px] font-mono text-cyan-400/40 tracking-[0.5em] uppercase mb-4">Ready?</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            Join the Order
+          </h2>
+          <p className="text-sm text-white/30 mb-8">Connect on WhatsApp and start building your collection today.</p>
           <a href="https://chat.whatsapp.com/IZi7UphEO9O76lY8dFYUYn?mode=gi_t" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold tracking-[0.2em] uppercase px-12 h-14 neon-border-sky">
-              Join the Rebellion
+            <Button size="lg" className="h-12 px-10 bg-cyan-400 hover:bg-cyan-300 text-[#06060e] font-bold text-sm tracking-wide rounded-md hover:shadow-[0_0_24px_rgba(0,255,255,0.4)] transition-all flex items-center gap-2 mx-auto">
+              <Zap className="w-4 h-4" />
+              Join Requiem Order
             </Button>
           </a>
         </div>
@@ -163,25 +134,23 @@ export default function Home() {
 }
 
 const FEATURES = [
-  { icon: CreditCard, title: "Card Codex",   desc: "Collect rare character cards from across the Requiem Order universe. Tiered T1–TX with unique artwork and lore." },
-  { icon: Shield,     title: "Guilds",        desc: "Form powerful guilds with allies. Pool resources, dominate the leaderboard, and claim the empire." },
-  { icon: Crosshair,  title: "RPG System",    desc: "Battle in dungeons, level up your character, unlock classes, and take on epic quests." },
-  { icon: Activity,   title: "Economy",       desc: "Earn gold, bank your wealth, trade cards, and participate in the Requiem Order lottery." },
-  { icon: Users,      title: "Community",     desc: "A thriving WhatsApp-native community with moderation, anti-spam, and real-time rankings." },
-  { icon: Shield,     title: "Gacha",         desc: "Pull from the premium gacha pool for exclusive legendary cards. Only Requiem Order members may spin." },
+  { icon: CreditCard, title: "Card Codex",    desc: "35,000+ cards from Shoob, tiered T1–TX. Collect, trade, and flex your rarest pulls." },
+  { icon: Shield,     title: "Guilds",        desc: "Form alliances, pool resources, and dominate the guild leaderboard together." },
+  { icon: Sword,      title: "Combat",        desc: "Dungeon raids, class unlocks, and PvP battles with real stakes." },
+  { icon: Coins,      title: "Economy",       desc: "Earn gold, bank wealth, trade on the marketplace, and spin the gacha." },
+  { icon: Users,      title: "Community",     desc: "WhatsApp-native with moderation, anti-spam, and real-time rankings." },
+  { icon: Zap,        title: "Gacha",         desc: "Exclusive legendary pulls for members only. Chase your next TS-tier card." },
 ];
 
-function StatCard({ icon: Icon, label, value, color }: { icon: any; label: string; value: number; color: string }) {
+function StatCard({ icon: Icon, label, value, color }: { icon: any; label: string; value: number; color: "cyan" | "violet" }) {
+  const isCyan = color === "cyan";
   return (
-    <div className="glass-card rounded-xl p-6 border-primary/8 hover:border-primary/20 transition-all group">
-      <div className="flex items-start justify-between mb-4">
-        <Icon className={`w-5 h-5 ${color}`} />
-        <span className="text-[10px] font-mono text-primary/20 tracking-widest uppercase">反逆</span>
-      </div>
-      <p className={`text-3xl font-mono font-bold ${color} mb-1`}>
+    <div className="glass-card rounded-xl p-5">
+      <Icon className={`w-4 h-4 mb-3 ${isCyan ? "text-cyan-400" : "text-violet-400"}`} />
+      <p className={`text-2xl font-bold font-mono mb-0.5 ${isCyan ? "text-cyan-400" : "text-violet-400"}`}>
         {value.toLocaleString()}
       </p>
-      <p className="text-xs text-muted-foreground uppercase tracking-widest">{label}</p>
+      <p className="text-[11px] text-white/30 uppercase tracking-wider">{label}</p>
     </div>
   );
 }

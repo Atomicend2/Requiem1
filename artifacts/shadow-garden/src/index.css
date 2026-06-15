@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&family=Shippori+Mincho:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -11,41 +10,32 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
   --color-card-border: hsl(var(--card-border));
-
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
   --color-popover-border: hsl(var(--popover-border));
-
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-primary-border: var(--primary-border);
-
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-secondary-border: var(--secondary-border);
-
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-muted-border: var(--muted-border);
-
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-accent-border: var(--accent-border);
-
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
   --color-destructive-border: var(--destructive-border);
-
   --color-chart-1: hsl(var(--chart-1));
   --color-chart-2: hsl(var(--chart-2));
   --color-chart-3: hsl(var(--chart-3));
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
-
   --color-sidebar: hsl(var(--sidebar));
   --color-sidebar-foreground: hsl(var(--sidebar-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
@@ -56,11 +46,9 @@
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-accent-border: var(--sidebar-accent-border);
   --color-sidebar-ring: hsl(var(--sidebar-ring));
-
   --font-sans: var(--app-font-sans);
   --font-serif: var(--app-font-serif);
   --font-mono: var(--app-font-mono);
-
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -68,155 +56,205 @@
 }
 
 :root {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
-
+  --button-outline: rgba(0, 255, 255, 0.10);
+  --badge-outline: rgba(0, 255, 255, 0.05);
   --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255,255,255, .03);
+  --elevate-2: rgba(255,255,255, .06);
 
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
+  /* Requiem — Sleek Dark / Cyan Neon */
+  --background: 240 15% 3%;
+  --foreground: 210 20% 90%;
 
-  /* Requiem Order ⚜ Imperial Throne Theme — Black, Crimson, Gold */
-  --background: 240 18% 5%;
-  --foreground: 0 0% 92%;
+  --border: 220 15% 12%;
 
-  --border: 45 28% 15%;
+  --card: 230 14% 6%;
+  --card-foreground: 210 20% 90%;
+  --card-border: 185 100% 50%;
 
-  --card: 240 14% 8%;
-  --card-foreground: 0 0% 92%;
-  --card-border: 45 50% 28%;
+  --sidebar: 240 18% 4%;
+  --sidebar-foreground: 210 20% 88%;
+  --sidebar-border: 220 12% 10%;
+  --sidebar-primary: 185 100% 50%;
+  --sidebar-primary-foreground: 240 15% 4%;
+  --sidebar-accent: 240 12% 8%;
+  --sidebar-accent-foreground: 210 20% 88%;
+  --sidebar-ring: 185 100% 50%;
 
-  --sidebar: 240 18% 5%;
-  --sidebar-foreground: 0 0% 92%;
-  --sidebar-border: 45 30% 16%;
-  --sidebar-primary: 350 75% 38%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 12% 12%;
-  --sidebar-accent-foreground: 0 0% 92%;
-  --sidebar-ring: 350 75% 42%;
+  --popover: 230 16% 5%;
+  --popover-foreground: 210 20% 90%;
+  --popover-border: 220 15% 14%;
 
-  --popover: 240 16% 7%;
-  --popover-foreground: 0 0% 92%;
-  --popover-border: 45 35% 22%;
+  --primary: 185 100% 50%;
+  --primary-foreground: 240 15% 4%;
 
-  --primary: 350 75% 38%;
-  --primary-foreground: 0 0% 100%;
+  --secondary: 262 80% 58%;
+  --secondary-foreground: 0 0% 100%;
 
-  --secondary: 46 65% 52%;
-  --secondary-foreground: 240 14% 8%;
+  --muted: 230 12% 10%;
+  --muted-foreground: 220 10% 55%;
 
-  --muted: 240 12% 12%;
-  --muted-foreground: 240 8% 65%;
+  --accent: 262 80% 58%;
+  --accent-foreground: 0 0% 100%;
 
-  --accent: 46 60% 48%;
-  --accent-foreground: 240 14% 8%;
-
-  --destructive: 350 75% 45%;
+  --destructive: 0 85% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 240 12% 12%;
-  --ring: 350 75% 45%;
+  --input: 230 12% 10%;
+  --ring: 185 100% 50%;
 
-  --chart-1: 350 75% 38%;
-  --chart-2: 46 65% 52%;
-  --chart-3: 46 50% 35%;
-  --chart-4: 350 60% 55%;
-  --chart-5: 240 8% 65%;
+  --chart-1: 185 100% 50%;
+  --chart-2: 262 80% 58%;
+  --chart-3: 185 70% 35%;
+  --chart-4: 262 60% 45%;
+  --chart-5: 220 10% 55%;
 
   --app-font-sans: 'Inter', sans-serif;
-  --app-font-serif: 'Cinzel', 'Playfair Display', serif;
-  --app-font-mono: 'Space Mono', monospace;
+  --app-font-serif: 'Space Grotesk', sans-serif;
+  --app-font-mono: 'JetBrains Mono', monospace;
 
-  --radius: 0.4rem;
-  
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  --radius: 0.375rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.6);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.6);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+
+  /* Neon glow tokens */
+  --cyan: #00FFFF;
+  --violet: #7C3AED;
+  --cyan-dim: rgba(0, 255, 255, 0.15);
+  --cyan-glow: 0 0 20px rgba(0,255,255,0.4), 0 0 40px rgba(0,255,255,0.15);
+  --violet-glow: 0 0 20px rgba(124,58,237,0.4), 0 0 40px rgba(124,58,237,0.15);
 }
 
-.dark {
-  /* Same as root — dark mode only */
-}
+.dark { /* same as root */ }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background-color: #0A0A0F;
+    background-color: #08080f;
     background-image:
-      radial-gradient(at 50% 0%, rgba(160, 0, 26, 0.10) 0px, transparent 55%),
-      radial-gradient(at 85% 95%, rgba(212, 175, 55, 0.06) 0px, transparent 55%),
-      radial-gradient(at 15% 80%, rgba(139, 0, 0, 0.06) 0px, transparent 60%),
-      url('/images/imperial-pattern.svg');
-    background-size: auto, auto, auto, cover;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    background-attachment: fixed, fixed, fixed, fixed;
-    color: #EAEAEA;
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 100%, rgba(124,58,237,0.05) 0%, transparent 60%);
+    background-attachment: fixed;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-wide;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
+/* ── Utility classes ─────────────────────────────────────── */
 @layer utilities {
-  .glass-card {
-    background: rgba(21, 21, 29, 0.55);
-    border: 1px solid rgba(212, 175, 55, 0.16);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
-    transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
-  }
 
-  .glass-card:hover {
-    border-color: rgba(160, 0, 26, 0.45);
-    background: rgba(21, 21, 29, 0.75);
-  }
-
-  .glass-panel {
-    background: rgba(10, 10, 15, 0.82);
-    border: 1px solid rgba(212, 175, 55, 0.14);
+  /* Glass surfaces */
+  .glass {
+    background: rgba(8, 8, 18, 0.7);
+    border: 1px solid rgba(255,255,255,0.06);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
-  /* Imperial gold glow — rank, seals, treasury */
-  .neon-text-gold {
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 0 22px rgba(212, 175, 55, 0.35);
+  .glass-card {
+    background: rgba(10, 10, 22, 0.6);
+    border: 1px solid rgba(0, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .neon-text-purple {
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 0 22px rgba(212, 175, 55, 0.35);
+  .glass-card:hover {
+    border-color: rgba(0, 255, 255, 0.22);
+    box-shadow: 0 0 24px rgba(0,255,255,0.06), inset 0 0 24px rgba(0,255,255,0.02);
   }
 
-  .neon-text-cyan {
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 0 22px rgba(212, 175, 55, 0.35);
+  .glass-panel {
+    background: rgba(6, 6, 14, 0.85);
+    border: 1px solid rgba(0,255,255,0.07);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
-  /* Royal Crimson glow — the colour of power */
-  .neon-text-sky {
-    text-shadow: 0 0 10px rgba(160, 0, 26, 0.6), 0 0 22px rgba(160, 0, 26, 0.35);
+  /* Grid overlay — the signature element */
+  .grid-overlay {
+    background-image:
+      linear-gradient(rgba(0,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Neon text */
+  .neon-cyan {
+    color: #00FFFF;
+    text-shadow: 0 0 10px rgba(0,255,255,0.8), 0 0 30px rgba(0,255,255,0.3);
+  }
+
+  .neon-violet {
+    color: #a78bfa;
+    text-shadow: 0 0 10px rgba(124,58,237,0.8), 0 0 30px rgba(124,58,237,0.3);
+  }
+
+  /* Keep old class names working */
+  .neon-text-gold  { color: #00FFFF; text-shadow: 0 0 10px rgba(0,255,255,0.7); }
+  .neon-text-sky   { color: #00FFFF; text-shadow: 0 0 10px rgba(0,255,255,0.6); }
+  .neon-text-purple{ color: #a78bfa; text-shadow: 0 0 10px rgba(124,58,237,0.7); }
+  .neon-text-cyan  { color: #00FFFF; text-shadow: 0 0 10px rgba(0,255,255,0.7); }
+
+  .neon-border-sky {
+    box-shadow: 0 0 12px rgba(0,255,255,0.25), inset 0 0 8px rgba(0,255,255,0.05);
+    border-color: rgba(0,255,255,0.4) !important;
   }
 
   .neon-border-purple {
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.35), inset 0 0 10px rgba(212, 175, 55, 0.1);
-    border-color: rgba(212, 175, 55, 0.5);
-  }
-
-  .neon-border-sky {
-    box-shadow: 0 0 12px rgba(160, 0, 26, 0.4), inset 0 0 10px rgba(160, 0, 26, 0.12);
-    border-color: rgba(160, 0, 26, 0.5);
+    box-shadow: 0 0 12px rgba(124,58,237,0.3), inset 0 0 8px rgba(124,58,237,0.06);
+    border-color: rgba(124,58,237,0.45) !important;
   }
 
   .neon-border-cyan {
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.35), inset 0 0 10px rgba(212, 175, 55, 0.1);
-    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 12px rgba(0,255,255,0.25), inset 0 0 8px rgba(0,255,255,0.05);
+    border-color: rgba(0,255,255,0.4) !important;
   }
+
+  /* Glow pill for active nav */
+  .nav-active-pill {
+    background: rgba(0,255,255,0.08);
+    border: 1px solid rgba(0,255,255,0.2);
+    color: #00FFFF;
+    box-shadow: 0 0 16px rgba(0,255,255,0.12);
+  }
+
+  /* Scan line shimmer on hero */
+  .scanline {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,255,0.012) 2px,
+      rgba(0,255,255,0.012) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Tier badge colors */
+  .tier-T1 { color: #94a3b8; border-color: rgba(148,163,184,0.3); }
+  .tier-T2 { color: #6ee7b7; border-color: rgba(110,231,183,0.3); }
+  .tier-T3 { color: #60a5fa; border-color: rgba(96,165,250,0.3); }
+  .tier-T4 { color: #c084fc; border-color: rgba(192,132,252,0.3); }
+  .tier-T5 { color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+  .tier-T6 { color: #f87171; border-color: rgba(248,113,113,0.3); }
+  .tier-TS { color: #00FFFF; border-color: rgba(0,255,255,0.4); text-shadow: 0 0 8px rgba(0,255,255,0.6); }
+  .tier-TX { color: #a78bfa; border-color: rgba(167,139,250,0.4); text-shadow: 0 0 8px rgba(167,139,250,0.6); }
+  .tier-TZ { color: #fb923c; border-color: rgba(251,146,60,0.4); text-shadow: 0 0 8px rgba(251,146,60,0.4); }
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,255,255,0.3); }

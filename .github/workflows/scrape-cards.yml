@@ -1,0 +1,41 @@
+name: Scrape Shoob Cards
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
+        working-directory: artifacts/api-server
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+        working-directory: artifacts/api-server
+
+      - name: Run scraper (metadata only — no images)
+        run: node scraper-runner.mjs
+        working-directory: artifacts/api-server
+        env:
+          SHOOB_SYNC_ONLY: 'true'
+          CARDS_OUTPUT: '../../cards.json'
