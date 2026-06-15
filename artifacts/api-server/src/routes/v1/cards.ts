@@ -6,6 +6,24 @@ import { getSocket, isSocketConnected } from "../../bot/connection.js";
 import { getStaff } from "../../bot/db/queries.js";
 import { logger } from "../../lib/logger.js";
 
+// Get image URL — prefers stored blob, falls back to Shoob CDN
+function getCardImageUrl(card: any): string {
+  if (card.image_data) return `/api/v1/cards/${card.id}/image`;
+  try {
+    if (card.raw_data) {
+      const raw = typeof card.raw_data === "string" ? JSON.parse(card.raw_data) : card.raw_data;
+      if (raw?.media_url) return raw.media_url;
+      const id = card.shoob_id || raw?._id;
+      if (id) {
+        if (raw?.has_webm) return `https://api.shoob.gg/site/api/cardr/${id}?type=webm`;
+        return `https://api.shoob.gg/site/api/cardr/${id}?size=400`;
+      }
+    }
+  } catch {}
+  return "";
+}
+
+
 const router = Router();
 const uploadMem = multer({ storage: multer.memoryStorage(), limits: { fileSize: 50 * 1024 * 1024 } });
 
@@ -107,7 +125,7 @@ router.get("/", optionalAuth, (req, res) => {
       tier: card.tier,
       series: card.series || "General",
       description: card.description || "",
-      imageUrl: card.image_data ? `/api/v1/cards/${card.id}/image` : (card.image_url || ""),
+      imageUrl: getCardImageUrl(card),
       isAnimated,
       totalCopies,
       ownerName: owner?.name || "Unclaimed",
@@ -146,7 +164,7 @@ router.get("/my", requireAuth, (req: AuthRequest, res) => {
         tier: uc.tier,
         series: uc.series || "General",
         description: uc.description || "",
-        imageUrl: uc.image_data ? `/api/v1/cards/${uc.id}/image` : (uc.image_url || ""),
+        imageUrl: getCardImageUrl({ ...uc, id: uc.id }),
         isAnimated,
         totalCopies,
         ownerName: req.user?.name || "You",

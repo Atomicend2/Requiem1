@@ -59,7 +59,7 @@ export async function loadCardsFromRepo(): Promise<{ imported: number; updated: 
         WHERE id=?
       `).run(
         card.name, card.tier, card.series, card.is_animated ? 1 : 0,
-        JSON.stringify(card.raw || {}),
+        JSON.stringify({ media_url: card.media_url || '', has_webm: card.has_webm || false, _id: card.shoob_id }),
         card.file_hash || "",
         card.has_webm ? 1 : 0,
         card.has_webp ? 1 : 0,
@@ -86,7 +86,7 @@ export async function loadCardsFromRepo(): Promise<{ imported: number; updated: 
         card.name, card.series, card.tier,
         card.is_animated ? 1 : 0,
         shoobId,
-        JSON.stringify(card.raw || {}),
+        JSON.stringify({ media_url: card.media_url || '', has_webm: card.has_webm || false, _id: card.shoob_id }),
         card.file_hash || "",
         card.has_webm ? 1 : 0,
         card.has_webp ? 1 : 0,

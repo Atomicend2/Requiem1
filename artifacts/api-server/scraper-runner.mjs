@@ -208,19 +208,18 @@ async function main() {
           continue;
         }
 
-        // Metadata only — no image download
+        // Metadata only — no images, no raw field (keeps cards.json small)
         const record = {
           shoob_id   : shoobId,
           name       : (card.name || card.slug || shoobId).trim().replace(/_/g, " "),
           tier       : normaliseTier(card.tier),
           series     : extractSeries(card),
           is_animated: isAnimated(card),
-          media_url  : getMediaUrl(card),   // bot fetches this on demand
+          media_url  : getMediaUrl(card),
           has_webm   : card.has_webm === true,
           has_webp   : card.has_webp === true,
           slug       : card.slug || "",
           file_hash  : card.file || "",
-          raw        : card,
           scraped_at : Math.floor(Date.now() / 1000),
         };
 
